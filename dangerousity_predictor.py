@@ -34,6 +34,7 @@ class DangerPredictor:
             print('Preprocessing')
         df_crimes = preprocess.fill_missing_wrong(df_crimes)
         df_crimes = preprocess.get_danger_level(df_crimes, df_population)
+        preprocess.scale_year_cnt(df_crimes)
 
         input_attrs = ['city_name', 'crime_kind', 'when_year', 'when_time_d', 'when_time_m', 'when_time_n', 'when_time_e',
                        'age_level_0', 'age_level_1', 'age_level_2', 'age_level_3', 'age_level_4', 'age_level_5', 'female_ratio']

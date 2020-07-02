@@ -64,6 +64,7 @@ crimes = df_crimes['crime_kind'].unique()
 print('Preprocessing')
 df_crimes = preprocess.fill_missing_wrong(df_crimes)
 df_crimes = preprocess.get_danger_level(df_crimes, df_population)
+preprocess.scale_year_cnt(df_crimes)
 print()
 
 # Categorical to numeric

@@ -99,6 +99,29 @@ def fill_missing_wrong(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
+
+# A method that scales 'when_year' column and 'co_cnt' column
+def scale_year_cnt(df_crime: pd.DataFrame) -> pd.DataFrame:
+    # Project columns to scale
+    years = df_crime['when_year'].to_numpy().reshape(len(df_crime), -1)
+    counts = df_crime['no_cnt'].to_numpy()
+
+    # Min-max scale the 'when_year' column
+    scaled_years = MinMaxScaler().fit_transform(years)
+
+    # Get the array of (scaled_year / original_year)
+    ratio_list = (scaled_years / years).reshape(len(df_crime))
+
+    # Scale counts with the ratio above
+    scaled_counts = counts * ratio_list
+
+    # Put new scaled columns into original dataset
+    df_crime['when_year'] = scaled_years
+    df_crime['no_cnt'] = scaled_counts * 100000
+
+    return df_crime
+
+
 def get_danger_level(df_crime: pd.DataFrame, pop: pd.DataFrame) -> pd.DataFrame:
     population=pop['population']
 

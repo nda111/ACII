@@ -76,6 +76,7 @@ target_attrs= ['level']
 print('Preprocessing')
 df_crimes = preprocess.fill_missing_wrong(df_crimes)
 df_crimes = preprocess.get_danger_level(df_crimes, df_population)
+preprocess.scale_year_cnt(df_crimes)
 
 # Convert crime kind into a float value
 crime_map = {}
