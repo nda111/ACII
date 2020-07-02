@@ -151,5 +151,10 @@ df_population = pd.read_excel('Dataset.xlsx', sheet_name='population')
 
 predictor = DangerPredictor().fit(df_crimes, df_population, print_progress=True)
 
-print(predictor.predict(crime='Rape', city='Assam', year=2020, hour=22, age=20, is_female=True))
-print(predictor.predict(crime='Murder', city='Maharashtra', year=2020, hour=19, age=24, is_female=True))
+print()
+print('[Rape, Assam, 2020, hour=22, age=20, Female]')
+print('Level:', predictor.predict(crime='Rape', city='Assam', year=2020, hour=22, age=20, is_female=True))
+
+print()
+print('[Murder, Maharashtra, 2020, hour=19, age=24, Female]')
+print('Level:', predictor.predict(crime='Murder', city='Maharashtra', year=2020, hour=19, age=24, is_female=True))
